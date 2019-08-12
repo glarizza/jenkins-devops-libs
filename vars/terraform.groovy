@@ -293,13 +293,10 @@ def plan(Closure body) {
       }
     }
 
-    plan_output = sh(script: "${cmd} ${config.dir}", returnStdout: true)
-
-    // display plan output if specified
-    if (config.display == true) {
-      print 'Terraform plan output is:'
-      print plan_output
-    }
+    return sh(
+      script: "${cmd} ${config.dir}",
+      returnStdout: true
+    ).trim()
   }
   catch(Exception error) {
     print 'Failure using terraform plan.'
