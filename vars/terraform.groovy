@@ -293,10 +293,12 @@ def plan(Closure body) {
       }
     }
 
-    return sh(
+    plan_output = sh(
       script: "${cmd} ${config.dir}",
       returnStdout: true
     ).trim()
+    echo plan_output
+    return plan_output
   }
   catch(Exception error) {
     print 'Failure using terraform plan.'
